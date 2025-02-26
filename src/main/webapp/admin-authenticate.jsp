@@ -1,3 +1,5 @@
+<!--AUTh
+  -->
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%
     String username = request.getParameter("username");
@@ -11,6 +13,6 @@
         session.setAttribute("adminLoggedIn", "true");
         response.sendRedirect("admin-dashboard.jsp");
     } else {
-        out.println("<script>alert('Invalid Username or Password!'); location.href='admin-login.jsp';</script>");
+        out.println("<script>alert('Invalid Username or Password!'); location.href='adminlogin.jsp';</script>");
     }
 %>

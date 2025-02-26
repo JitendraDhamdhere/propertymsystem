@@ -1,6 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
-<%@ include file="../includes/connect.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="java.sql.*"%>
+<%@ include file="../includes/connect.jsp"%>
 
 <%
     String title = request.getParameter("title");

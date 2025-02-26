@@ -1,51 +1,10 @@
+
+<!-- ADMINGallary -->
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page
 	import="java.io.*, java.sql.*, javax.servlet.http.*, javax.servlet.*, java.nio.file.*"%>
 <%@ include file="includes/connect.jsp"%>
 
-<%
-if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("action") != null) {
-	String action = request.getParameter("action");
-
-	if ("add".equals(action)) {
-		Part filePart = request.getPart("image");
-		InputStream fileContent = filePart.getInputStream();
-		String altText = request.getParameter("alt_text");
-
-		PreparedStatement ps = conn.prepareStatement("INSERT INTO gallery (image, alt_text) VALUES (?, ?)");
-		ps.setBlob(1, fileContent);
-		ps.setString(2, altText);
-		ps.executeUpdate();
-
-		out.print("success");
-		return;
-	}
-
-	if ("update".equals(action)) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		String newAltText = request.getParameter("alt_text");
-
-		PreparedStatement ps = conn.prepareStatement("UPDATE gallery SET alt_text = ? WHERE id = ?");
-		ps.setString(1, newAltText);
-		ps.setInt(2, id);
-		ps.executeUpdate();
-
-		out.print("success");
-		return;
-	}
-
-	if ("delete".equals(action)) {
-		int id = Integer.parseInt(request.getParameter("id"));
-
-		PreparedStatement ps = conn.prepareStatement("DELETE FROM gallery WHERE id = ?");
-		ps.setInt(1, id);
-		ps.executeUpdate();
-
-		out.print("success");
-		return;
-	}
-}
-%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -129,53 +88,6 @@ if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("action
 		</div>
 	</div>
 
-	<script>
-        // AJAX for image upload
-        $("#uploadForm").submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                type: "POST",
-                url: "gallery.jsp",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response.trim() === "success") {
-                        alert("Image uploaded successfully!");
-                        location.reload();
-                    } else {
-                        alert("Error uploading image.");
-                    }
-                }
-            });
-        });
 
-        // AJAX for updating alt text
-        function updateAltText(id) {
-            var newAltText = $("#alt-" + id).val();
-            $.post("gallery.jsp", { action: "update", id: id, alt_text: newAltText }, function(response) {
-                if (response.trim() === "success") {
-                    alert("Alt text updated successfully!");
-                } else {
-                    alert("Error updating alt text.");
-                }
-            });
-        }
-
-        // AJAX for deleting image
-        function deleteImage(id) {
-            if (confirm("Are you sure you want to delete this image?")) {
-                $.post("gallery.jsp", { action: "delete", id: id }, function(response) {
-                    if (response.trim() === "success") {
-                        $("#row-" + id).remove();
-                        alert("Image deleted successfully!");
-                    } else {
-                        alert("Error deleting image.");
-                    }
-                });
-            }
-        }
-    </script>
 </body>
 </html>

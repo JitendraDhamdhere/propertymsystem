@@ -1,6 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="java.io.*, java.sql.*, javax.servlet.http.*, javax.servlet.*, java.nio.file.*" %>
-<%@ include file="includes/connect.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page
+	import="java.io.*, java.sql.*, javax.servlet.http.*, javax.servlet.*, java.nio.file.*"%>
+<%@ include file="includes/connect.jsp"%>
 
 <%
     if ("POST".equalsIgnoreCase(request.getMethod())) {

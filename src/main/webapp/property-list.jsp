@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*"%>
 <%
 String loggedInUser = (String) session.getAttribute("username");
+int userId = (int) session.getAttribute("userid"); // Assuming you store user ID in session
 %>
 <%@ include file="includes/connect.jsp"%>
 
@@ -10,44 +11,79 @@ String loggedInUser = (String) session.getAttribute("username");
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery</title>
+<title>My Bookings</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 <style>
-.gallery-card {
+body {
+	background-color: #f8f9fa;
+	font-family: 'Arial', sans-serif;
+}
+
+.booking-card {
 	border: none;
 	border-radius: 15px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	overflow: hidden;
-	transition: transform 0.3s;
+	transition: transform 0.3s, box-shadow 0.3s;
 	margin-bottom: 30px;
+	background-color: #fff;
 }
 
-.nav-link {
-	font-size: 1.4em;
+.booking-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-#gallery {
-	padding-top: 200px;
-}
-
-.gallery-card:hover {
-	transform: scale(1.05);
-}
-
-.gallery-card img {
+.booking-card img {
 	width: 100%;
 	height: 250px;
 	object-fit: cover;
 }
 
-.gallery-card .card-body {
-	text-align: center;
+.booking-card .card-body {
+	padding: 20px;
+}
+
+.booking-card .card-title {
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.booking-card .card-text {
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 5px;
+}
+
+.navbar {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+	width: 100px;
+	border-radius: 50%;
+}
+
+.navbar-nav .nav-link {
+	font-size: 1rem;
+	color: #fff;
+	margin-left: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+	color: #007bff;
+}
+
+.navbar-nav .btn {
+	margin-left: 15px;
 }
 </style>
 </head>
 <body>
+
 	<!-- Navigation Bar -->
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
@@ -73,27 +109,18 @@ String loggedInUser = (String) session.getAttribute("username");
 								Us</a></li>
 						<li class="nav-item"><a class="nav-link" href="gallery.jsp">Gallery</a></li>
 
-						<%-- Show the "Properties" link based on login status --%>
-						<%
-						if (loggedInUser != null) {
-						%>
+						<% if (loggedInUser != null) { %>
 						<li class="nav-item"><a class="nav-link"
 							href="property-list.jsp">My Properties</a></li>
-						<!-- Show for logged-in users -->
 						<li class="nav-item"><a class="nav-link text-white fw-bold">Welcome,
-								<%=loggedInUser%></a></li>
+								<%= loggedInUser %></a></li>
 						<li class="nav-item"><a
 							class="nav-link btn btn-danger text-white px-3" href="logout.jsp">Logout</a></li>
-						<%
-						} else {
-						%>
+						<% } else { %>
 						<li class="nav-item"><a class="nav-link" href="template.jsp">Properties</a></li>
-						<!-- Show for non-logged-in users -->
 						<li class="nav-item"><a
 							class="nav-link btn btn-primary text-white px-3" href="login.jsp">Login</a></li>
-						<%
-						}
-						%>
+						<% } %>
 
 						<li class="nav-item"><a class="nav-link"
 							href="adminlogin.jsp">Admin</a></li>
@@ -104,43 +131,81 @@ String loggedInUser = (String) session.getAttribute("username");
 	</header>
 
 	<section class="container my-5 pt-5">
-
+		<h2 class="mb-4">My Bookings</h2>
 		<div class="row">
-
 			<%
 			try {
-
-				String sql = "SELECT image_url, alt_text FROM gallery";
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				String sql = "SELECT b.id AS booking_id, b.booking_date, b.status, p.* " +
+							"FROM bookings b " +
+							"JOIN properties p ON b.property_id = p.id " +
+							"WHERE b.user_id = ?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, userId);
+				ResultSet rs = pstmt.executeQuery();
 
 				while (rs.next()) {
-					String imageUrl = rs.getString("image_url");
-					String altText = rs.getString("alt_text");
+					int bookingId = rs.getInt("booking_id");
+					String bookingDate = rs.getString("booking_date");
+					String bookingStatus = rs.getString("status");
+					String propertyTitle = rs.getString("title");
+					String propertyDescription = rs.getString("description");
+					String propertyType = rs.getString("type");
+					double propertyPrice = rs.getDouble("price");
+					String propertyLocation = rs.getString("location");
+					String propertySize = rs.getString("size");
+					int propertyBedrooms = rs.getInt("bedrooms");
+					int propertyBathrooms = rs.getInt("bathrooms");
+					String propertyStatus = rs.getString("status");
+					String propertyImage = rs.getString("image");
 			%>
 			<div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-				<div class="card gallery-card">
-					<img src="<%=imageUrl%>" alt="<%=altText%>" class="img-fluid">
+				<div class="card booking-card">
+					<img src="<%= propertyImage %>" alt="<%= propertyTitle %>"
+						class="img-fluid">
 					<div class="card-body">
-						<p class="card-text"><%=altText%></p>
+						<h5 class="card-title"><%= propertyTitle %></h5>
+						<p class="card-text"><%= propertyDescription %></p>
+						<p class="card-text">
+							<strong>Type:</strong>
+							<%= propertyType %></p>
+						<p class="card-text">
+							<strong>Price:</strong> $<%= propertyPrice %></p>
+						<p class="card-text">
+							<strong>Location:</strong>
+							<%= propertyLocation %></p>
+						<p class="card-text">
+							<strong>Size:</strong>
+							<%= propertySize %>
+							sq. ft.
+						</p>
+						<p class="card-text">
+							<strong>Bedrooms:</strong>
+							<%= propertyBedrooms %></p>
+						<p class="card-text">
+							<strong>Bathrooms:</strong>
+							<%= propertyBathrooms %></p>
+						<p class="card-text">
+							<strong>Booking Date:</strong>
+							<%= bookingDate %></p>
+						<p class="card-text">
+							<strong>Booking Status:</strong>
+							<%= bookingStatus %></p>
 					</div>
 				</div>
 			</div>
 			<%
-			}
-			conn.close();
+				}
+				conn.close();
 			} catch (Exception e) {
 			%>
 			<p class="text-danger">
 				Error:
-				<%=e.getMessage()%></p>
+				<%= e.getMessage() %></p>
 			<%
 			}
 			%>
-
 		</div>
 	</section>
-
 
 	<!-- Footer Section -->
 	<footer class="bg-dark text-white pt-5 pb-4">

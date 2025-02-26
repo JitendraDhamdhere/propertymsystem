@@ -1,7 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*, javax.servlet.http.*, javax.servlet.annotation.*" %>
-<%@ include file="../includes/connect.jsp" %>
-<%@ page import="java.io.*, java.sql.*, javax.servlet.http.*, javax.servlet.annotation.*" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page
+	import="java.sql.*, javax.servlet.http.*, javax.servlet.annotation.*"%>
+<%@ include file="../includes/connect.jsp"%>
+<%@ page
+	import="java.io.*, java.sql.*, javax.servlet.http.*, javax.servlet.annotation.*"%>
 
 <%
 int id = Integer.parseInt(request.getParameter("id"));

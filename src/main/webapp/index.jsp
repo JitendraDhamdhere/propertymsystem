@@ -23,47 +23,48 @@ String loggedInUser = (String) session.getAttribute("username");
 <body>
 
 	<!-- Navigation Bar -->
-<header>	<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
-		style="background-color: #212529;">
-		<div class="container">
-			<a class="navbar-brand" href="#"> 
-				<img src="image/property-logo.png" alt="Property Management System Logo" style="width: 100px; border-radius: 50%;">
-			</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-					<li class="nav-item"><a class="nav-link" href="#properties">Properties</a></li>
-					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact Us</a></li>
-					<li class="nav-item"><a class="nav-link" href="gallery.jsp">Gallery</a></li>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #f8f9fa; border-bottom: 1px solid #ddd;">
+        <div class="container">
+            <a class="navbar-brand" href="#"> 
+                <img src="image/property-logo.png" alt="Property Management System Logo" style="width: 100px; border-radius: 50%;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="background-color: #007bff;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.jsp" style="color: #333; font-weight: 500;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" style="color: #333; font-weight: 500;">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#properties" style="color: #333; font-weight: 500;">Properties</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.jsp" style="color: #333; font-weight: 500;">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.jsp" style="color: #333; font-weight: 500;">Gallery</a></li>
 
-					<%-- Show the "Properties" link based on login status --%>
-					<% 
-						if (loggedInUser != null) {
-					%>
-						<li class="nav-item"><a class="nav-link" href="property-list.jsp">My Properties</a></li> <!-- Show for logged-in users -->
-						<li class="nav-item"><a class="nav-link text-white fw-bold">Welcome, <%= loggedInUser %></a></li>
-						<li class="nav-item"><a class="nav-link btn btn-danger text-white px-3" href="logout.jsp">Logout</a></li>
-					<% 
-						} else {
-					%>
-						<li class="nav-item"><a class="nav-link" href="template.jsp">Properties</a></li> <!-- Show for non-logged-in users -->
-						<li class="nav-item"><a class="nav-link btn btn-primary text-white px-3" href="login.jsp">Login</a></li>
-					<% 
-						}
-					%>
+                    <%-- Show the "Properties" link based on login status --%>
+                    <% 
+                    if (loggedInUser != null) {
+                    %>
+                        <li class="nav-item"><a class="nav-link" href="property-list.jsp" style="color: #333; font-weight: 500;">My Properties</a></li>
+                        <!-- Show for logged-in users -->
+                        <li class="nav-item"><a class="nav-link text-dark" style="font-weight: 500;">Welcome, <%= loggedInUser %></a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-danger text-white px-3" href="logout.jsp" style="border-radius: 20px;">Logout</a></li>
+                    <% 
+                    } else {
+                    %>
+                        <li class="nav-item"><a class="nav-link" href="template.jsp" style="color: #333; font-weight: 500;">Properties</a></li>
+                        <!-- Show for non-logged-in users -->
+                        <li class="nav-item"><a class="nav-link btn btn-primary text-white px-3" href="login.jsp" style="border-radius: 20px;">Login</a></li>
+                    <% 
+                    }
+                    %>
 
-					<li class="nav-item"><a class="nav-link" href="adminlogin.jsp">Admin</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav></header>
+                    <li class="nav-item"><a class="nav-link" href="adminlogin.jsp" style="color: #333; font-weight: 500;">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
 
 	<section class="hero-section" style="background: url('image/property1.jpg') no-repeat center center/cover; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; color: white;">
     <div class="hero-content" style="background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
