@@ -60,14 +60,10 @@ body {
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="#about">About
-								Us</a></li>
-						<li class="nav-item"><a class="nav-link" href="#properties">Properties</a></li>
+
 						<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact
 								Us</a></li>
-						<li class="nav-item"><a class="nav-link" href="gallery.jsp">Gallery</a></li>
 
-						<%-- Show the "Properties" link based on login status --%>
 						<% 
 						if (loggedInUser != null) {
 					%>
@@ -81,8 +77,7 @@ body {
 						<% 
 						} else {
 					%>
-						<li class="nav-item"><a class="nav-link" href="template.jsp">Properties</a></li>
-						<!-- Show for non-logged-in users -->
+
 						<li class="nav-item"><a
 							class="nav-link btn btn-primary text-white px-3" href="login.jsp">Login</a></li>
 						<% 
@@ -96,6 +91,7 @@ body {
 			</div>
 		</nav>
 	</header>
+
 
 	<div
 		class="container d-flex justify-content-center align-items-center vh-100">

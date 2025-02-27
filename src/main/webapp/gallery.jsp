@@ -224,7 +224,7 @@ body {
 							<strong>Type:</strong>
 							<%= type %></p>
 						<p class="card-text">
-							<strong>Price:</strong> $<%= price %></p>
+							<strong>Price:</strong> Rs.<%= price %></p>
 						<p class="card-text">
 							<strong>Location:</strong>
 							<%= location %></p>
@@ -258,7 +258,7 @@ body {
 										<strong>Type:</strong>
 										<%= type %></p>
 									<p>
-										<strong>Price:</strong> $<%= price %></p>
+										<strong>Price:</strong> Rs.<%= price %></p>
 									<p>
 										<strong>Location:</strong>
 										<%= location %></p>
@@ -314,7 +314,7 @@ body {
 										<strong>Type:</strong>
 										<%= type %></p>
 									<p>
-										<strong>Price:</strong> $<%= price %></p>
+										<strong>Price:</strong> Rs.<%= price %></p>
 									<p>
 										<strong>Location:</strong>
 										<%= location %></p>
@@ -342,23 +342,28 @@ body {
 								<input type="hidden" name="property_id" value="<%= id %>">
 								<input type="hidden" name="user_id"
 									value="<%= session.getAttribute("userId") %>">
+
 								<div class="form-group">
 									<label for="booking_date">Booking Date</label> <input
 										type="date" class="form-control" id="booking_date"
 										name="booking_date" required>
 								</div>
+
 								<div class="form-group">
 									<label for="status">Status</label> <select class="form-control"
 										id="status" name="status" required>
-										<option value="Pending">Pending</option>
+										<option value="Pending" selected>Pending</option>
 										<option value="Confirmed">Confirmed</option>
 										<option value="Cancelled">Cancelled</option>
 									</select>
 								</div>
+
 								<button type="submit" class="btn btn-success mt-3">Book
 									Now</button>
 							</form>
+
 							<% } %>
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"

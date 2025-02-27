@@ -36,9 +36,8 @@ String loggedInUser = (String) session.getAttribute("username");
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.jsp" style="color: #333; font-weight: 500;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about" style="color: #333; font-weight: 500;">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#properties" style="color: #333; font-weight: 500;">Properties</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.jsp" style="color: #333; font-weight: 500;">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.jsp" style="color: #333; font-weight: 500;">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.jsp" style="color: #333; font-weight: 500;">Properties</a></li>
 
                     <%-- Show the "Properties" link based on login status --%>
                     <% 
@@ -51,8 +50,8 @@ String loggedInUser = (String) session.getAttribute("username");
                     <% 
                     } else {
                     %>
-                        <li class="nav-item"><a class="nav-link" href="template.jsp" style="color: #333; font-weight: 500;">Properties</a></li>
-                        <!-- Show for non-logged-in users -->
+<!--                         <li class="nav-item"><a class="nav-link" href="template.jsp" style="color: #333; font-weight: 500;">Properties</a></li>
+ -->                        <!-- Show for non-logged-in users -->
                         <li class="nav-item"><a class="nav-link btn btn-primary text-white px-3" href="login.jsp" style="border-radius: 20px;">Login</a></li>
                     <% 
                     }
