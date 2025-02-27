@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2025 at 01:21 PM
+-- Generation Time: Feb 27, 2025 at 01:57 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.3
 
@@ -69,7 +69,8 @@ INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `submitted_at`
 (6, 'tst', 'es@gmail.com', '3214123', 'dwksmd,', '2025-02-23 19:44:06'),
 (7, 'Jitendra Developer', 'jitendradeveloper333@gmail.com', '09657795194', 'mssfm', '2025-02-25 13:02:58'),
 (8, 'test', 'jitendradeveloper333@gmail.com', '09657795194', '3', '2025-02-26 07:07:37'),
-(9, 'Jitendra Developer', 'jitendradeveloper333@gmail.com', '09657795194', 'rr', '2025-02-26 07:07:51');
+(9, 'Jitendra Developer', 'jitendradeveloper333@gmail.com', '09657795194', 'rr', '2025-02-26 07:07:51'),
+(10, 'Jitendra Developer', 'jitendradeveloper333@gmail.com', '09657795194', 'wwewe', '2025-02-27 11:55:45');
 
 -- --------------------------------------------------------
 
@@ -118,8 +119,8 @@ CREATE TABLE `properties` (
 --
 
 INSERT INTO `properties` (`id`, `title`, `description`, `type`, `price`, `location`, `size`, `bedrooms`, `bathrooms`, `status`, `image`, `created_at`) VALUES
-(2, 'Spacious Family House', 'A spacious 4-bedroom house with a large backyard.', 'House', '25000000.00', 'Suburb, City B', 3000, 4, 3, 'Available', 'image\\property2.jpg', '2025-02-25 14:29:20'),
-(3, 'Modern Office Space', 'A modern office space suitable for startups.', 'Office', '5000000.00', 'Business District, City C', 1200, 0, 2, 'Available', 'image\\property3.jpg', '2025-02-25 14:29:20'),
+(2, 'Spacious Family House', 'A spacious 4-bedroom house with a large backyard.', 'House', '25000.00', 'Suburb, City B', 3000, 4, 3, 'Available', 'image\\property2.jpg', '2025-02-25 14:29:20'),
+(3, 'Modern Office Space', 'A modern office space suitable for startups.', 'Office', '5000.00', 'Business District, City C', 1200, 0, 2, 'Available', 'image\\property3.jpg', '2025-02-25 14:29:20'),
 (15, 'test', 'test', 'Apartment', '333.00', 'sfd', 2, 2, 1, 'Available', NULL, '2025-02-26 06:01:14'),
 (17, 'tes', 'e', 'Apartment', '32.00', 'd', 3, 1, 1, 'Available', NULL, '2025-02-26 06:07:19');
 
@@ -199,7 +200,7 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `gallery`
 --
@@ -209,7 +210,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `users`
 --
